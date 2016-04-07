@@ -8,6 +8,16 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface DogeScriptListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link DogeScriptParser#constant_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterConstant_declaration(@NotNull DogeScriptParser.Constant_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DogeScriptParser#constant_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitConstant_declaration(@NotNull DogeScriptParser.Constant_declarationContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code vardec3}
 	 * labeled alternative in {@link DogeScriptParser#variable_declaration}.
 	 * @param ctx the parse tree
@@ -29,6 +39,18 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitConditionB(@NotNull DogeScriptParser.ConditionBContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code returnLit}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnLit(@NotNull DogeScriptParser.ReturnLitContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code returnLit}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnLit(@NotNull DogeScriptParser.ReturnLitContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#function_call}.
 	 * @param ctx the parse tree
@@ -84,6 +106,16 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitConditionF(@NotNull DogeScriptParser.ConditionFContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link DogeScriptParser#returns_array_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturns_array_value(@NotNull DogeScriptParser.Returns_array_valueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link DogeScriptParser#returns_array_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturns_array_value(@NotNull DogeScriptParser.Returns_array_valueContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code vardec}
 	 * labeled alternative in {@link DogeScriptParser#variable_declaration}.
 	 * @param ctx the parse tree
@@ -95,6 +127,18 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVardec(@NotNull DogeScriptParser.VardecContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code returnVar}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnVar(@NotNull DogeScriptParser.ReturnVarContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code returnVar}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnVar(@NotNull DogeScriptParser.ReturnVarContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#logical_operator}.
 	 * @param ctx the parse tree
@@ -118,6 +162,30 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitNegSignInt(@NotNull DogeScriptParser.NegSignIntContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code scanStatement}
+	 * labeled alternative in {@link DogeScriptParser#scan_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterScanStatement(@NotNull DogeScriptParser.ScanStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code scanStatement}
+	 * labeled alternative in {@link DogeScriptParser#scan_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitScanStatement(@NotNull DogeScriptParser.ScanStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code assignDec}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignDec(@NotNull DogeScriptParser.AssignDecContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assignDec}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignDec(@NotNull DogeScriptParser.AssignDecContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#return_statement}.
 	 * @param ctx the parse tree
 	 */
@@ -127,6 +195,18 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitReturn_statement(@NotNull DogeScriptParser.Return_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code printExpr}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintExpr(@NotNull DogeScriptParser.PrintExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code printExpr}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintExpr(@NotNull DogeScriptParser.PrintExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#conditionV}.
 	 * @param ctx the parse tree
@@ -230,6 +310,18 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitAfterthought_statement(@NotNull DogeScriptParser.Afterthought_statementContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code assignVar}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignVar(@NotNull DogeScriptParser.AssignVarContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assignVar}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignVar(@NotNull DogeScriptParser.AssignVarContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#main_function}.
 	 * @param ctx the parse tree
 	 */
@@ -259,6 +351,30 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCodeblock(@NotNull DogeScriptParser.CodeblockContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code returnFuncCall}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnFuncCall(@NotNull DogeScriptParser.ReturnFuncCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code returnFuncCall}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnFuncCall(@NotNull DogeScriptParser.ReturnFuncCallContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code printVar}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintVar(@NotNull DogeScriptParser.PrintVarContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code printVar}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintVar(@NotNull DogeScriptParser.PrintVarContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code tpParenthesis}
 	 * labeled alternative in {@link DogeScriptParser#top_prior}.
@@ -302,6 +418,18 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitLiteral(@NotNull DogeScriptParser.LiteralContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code printLit}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintLit(@NotNull DogeScriptParser.PrintLitContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code printLit}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintLit(@NotNull DogeScriptParser.PrintLitContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#comparison_bool_lit}.
 	 * @param ctx the parse tree
 	 */
@@ -311,6 +439,18 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComparison_bool_lit(@NotNull DogeScriptParser.Comparison_bool_litContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code printFunction}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintFunction(@NotNull DogeScriptParser.PrintFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code printFunction}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintFunction(@NotNull DogeScriptParser.PrintFunctionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#function_call_parameters}.
 	 * @param ctx the parse tree
@@ -341,16 +481,6 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCount_loop_statement(@NotNull DogeScriptParser.Count_loop_statementContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DogeScriptParser#all_possible_print}.
-	 * @param ctx the parse tree
-	 */
-	void enterAll_possible_print(@NotNull DogeScriptParser.All_possible_printContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DogeScriptParser#all_possible_print}.
-	 * @param ctx the parse tree
-	 */
-	void exitAll_possible_print(@NotNull DogeScriptParser.All_possible_printContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#repeatuntil_loop_statement}.
 	 * @param ctx the parse tree
@@ -408,6 +538,18 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitFunction_declaration(@NotNull DogeScriptParser.Function_declarationContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code assignInc}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignInc(@NotNull DogeScriptParser.AssignIncContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assignInc}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignInc(@NotNull DogeScriptParser.AssignIncContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#expression}.
 	 * @param ctx the parse tree
 	 */
@@ -418,15 +560,17 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitExpression(@NotNull DogeScriptParser.ExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link DogeScriptParser#returns_value}.
+	 * Enter a parse tree produced by the {@code returnNull}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturns_value(@NotNull DogeScriptParser.Returns_valueContext ctx);
+	void enterReturnNull(@NotNull DogeScriptParser.ReturnNullContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link DogeScriptParser#returns_value}.
+	 * Exit a parse tree produced by the {@code returnNull}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturns_value(@NotNull DogeScriptParser.Returns_valueContext ctx);
+	void exitReturnNull(@NotNull DogeScriptParser.ReturnNullContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#start}.
 	 * @param ctx the parse tree
@@ -448,6 +592,18 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 */
 	void exitAll_possible_statements(@NotNull DogeScriptParser.All_possible_statementsContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code returnExpr}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnExpr(@NotNull DogeScriptParser.ReturnExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code returnExpr}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnExpr(@NotNull DogeScriptParser.ReturnExprContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link DogeScriptParser#function_declaration_paramaters}.
 	 * @param ctx the parse tree
 	 */
@@ -457,16 +613,6 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunction_declaration_paramaters(@NotNull DogeScriptParser.Function_declaration_paramatersContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DogeScriptParser#assignment_statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssignment_statement(@NotNull DogeScriptParser.Assignment_statementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DogeScriptParser#assignment_statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssignment_statement(@NotNull DogeScriptParser.Assignment_statementContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code tpVarIdentifier}
 	 * labeled alternative in {@link DogeScriptParser#top_prior}.
@@ -489,16 +635,6 @@ public interface DogeScriptListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitEnd_condition(@NotNull DogeScriptParser.End_conditionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link DogeScriptParser#scan_statement}.
-	 * @param ctx the parse tree
-	 */
-	void enterScan_statement(@NotNull DogeScriptParser.Scan_statementContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link DogeScriptParser#scan_statement}.
-	 * @param ctx the parse tree
-	 */
-	void exitScan_statement(@NotNull DogeScriptParser.Scan_statementContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code high_prior2}
 	 * labeled alternative in {@link DogeScriptParser#high_prior}.

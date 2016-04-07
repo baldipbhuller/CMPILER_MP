@@ -10,7 +10,11 @@ public class DriverTest {
 		char x[];
 				try{
 					//ANTLRInputStream input = new ANTLRInputStream( System.in);
-					String expr = " much void dogeIntensifies () { such int x as 2*3 wow}"
+					String expr = " much void dogeIntensifies () { such int[2] x as {2,3} wow"
+							+ " such int y as 0+2/2 wow "
+							+ " print x wow "
+							+ " constant int zero as 0 wow "
+							+ " such boolean zero as yiz wow }"
 							;
 					//expr = expr.toString().replaceAll(" ", "");
 					//System.out.println(expr);
@@ -28,7 +32,7 @@ public class DriverTest {
 					//ExpParser.parse_return r = parser.eval	();
 					
 					//System.out.println(parser.start()); // print the value
-					System.out.println("h");
+					//System.out.println("h");
 					ParseTree tree = parser.start();
 					Visitor v = new Visitor();
 					v.visit(tree);

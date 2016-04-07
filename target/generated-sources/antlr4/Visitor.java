@@ -3,12 +3,15 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
+
+
+
 public class Visitor extends DogeScriptBaseVisitor<Value>{
 
-	Map<Variable,String> symbolTable;
+	Map<Variable,Value> symbolTable;
 	
 	public Visitor(){
-		symbolTable = new LinkedHashMap<Variable,String>();
+		symbolTable = new LinkedHashMap<Variable,Value>();
 	}
 	
 	
@@ -36,65 +39,91 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 		return super.visitContinue_condition(ctx);
 	}
 
+	
+	
+	@Override
+	public Value visitConstant_declaration(DogeScriptParser.Constant_declarationContext ctx) {
+		// TODO Auto-generated method stub
+		//add constant to table
+		Variable v = new Variable (ctx.datatype().getText(),ctx.VarIdentifier().getText());
+		if(CheckST(v, ctx.literal().getText()))
+		{
+			System.out.println("Error: " + v.getIdentifier() + " has been declared already" );
+		}
+		else addtoST(v, ctx.literal().getText());
+		
+		return super.visitConstant_declaration(ctx);
+	}
+
+
+	@Override
+	public Value visitReturns_array_value(DogeScriptParser.Returns_array_valueContext ctx) {
+		// TODO Auto-generated method stub
+		Value v = new Value(ctx.getText());
+		return v;
+	}
+
+
 	@Override
 	public Value visitVardec2(DogeScriptParser.Vardec2Context ctx) {
 		// TODO Auto-generated method stub
 		System.out.println("in var dec 2");
 		String d = ctx.datatype().getText();
-		String rv = ctx.returns_value().getText();
+		Value val = this.visit(ctx.returns_value());
+		String rv = val.asString();
 		String ide = ctx.VarIdentifier().getText();
 		if(d.equalsIgnoreCase("int"))
 		{
-			if(rv.matches("[0-9]+"))
+			if(rv.matches("([0-9]+|null)"))
 			{
 				//check symbol table if declared already
 				Variable v = new Variable(d,ide); 
 				if(CheckST(v,rv))
 					System.out.println("Error: " + ide + " has been declared already");
 				//add to symbol table
-				else symbolTable.put(v, rv);
+				else symbolTable.put(v, new Value (rv));
 			}
 				
 			else System.out.println("Error: " +rv + " is not of int datatype");
 		}
 		else if(d.equalsIgnoreCase("char"))
 		{
-			if(rv.matches("'[A-Za-z0-9]'"))
+			if(rv.matches("('[A-Za-z0-9]'|null)"))
 			{
 				//check symbol table if declared already
 				Variable v = new Variable(d,ide); 
 				if(CheckST(v,rv))
 					System.out.println("Error: " +ide + " has been declared already");
 				//add to symbol table
-				else symbolTable.put(v, rv);
+				else symbolTable.put(v, new Value (rv));
 			}
 				
 			else System.out.println("Error: " +rv + " is not of char datatype");
 		}
 		else if(d.equalsIgnoreCase("string"))
 		{
-			if(rv.matches("\"[A-Za-z0-9]*\""))
+			if(rv.matches("(\"[A-Za-z0-9]*\"|null)"))
 			{
 				//check symbol table if declared already
 				Variable v = new Variable(d,ide); 
 				if(CheckST(v,rv))
 					System.out.println("Error: " +ide + " has been declared already");
 				//add to symbol table
-				else symbolTable.put(v, rv);
+				else symbolTable.put(v, new Value (rv));
 			}
 				
 			else System.out.println("Error: " +rv + " is not of string datatype");
 		}
 		else if(d.equalsIgnoreCase("boolean"))
 		{
-			if(rv.matches("yiz|nawp"))
+			if(rv.matches("yiz|nawp|null"))
 			{
 				//check symbol table if declared already
 				Variable v = new Variable(d,ide); 
 				if(CheckST(v,rv))
 					System.out.println("Error: " +ide + " has been declared already");
 				//add to symbol table
-				else symbolTable.put(v, rv);
+				else symbolTable.put(v, new Value (rv));
 			}
 				
 			else System.out.println("Error: " +rv + " is not of boolean datatype");
@@ -109,9 +138,10 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 		System.out.println("in var dec 3");
 		String d = ctx.datatype_array().datatype().getText();
 		String arrlength = ctx.datatype_array().Array().getText();
-		String rv = ctx.returns_value().getText();
+		Value val = this.visit(ctx.returns_array_value());
+		String rv = val.asString();
 		String ide = ctx.VarIdentifier().getText();
-		System.out.println(ide);
+		System.out.println("Array name: "+ide);
 		
 		
 		if(d.equalsIgnoreCase("int"))
@@ -123,7 +153,7 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 				String temp[] = rv.split(",");
 				arrlength = arrlength.replace("[","");
 				int arrsize = Integer.valueOf(arrlength.replace("]","")) ; 
-				System.out.println(arrsize);
+				System.out.println("Array size: "+arrsize);
 				if(temp.length == arrsize)
 				{
 					//check symbol table if declared already
@@ -131,7 +161,7 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 					if(CheckST(v,rv))
 					System.out.println("Error: " +ide + " has been declared already");
 					//add to symbol table
-					else symbolTable.put(v, rv);
+					else symbolTable.put(v, new Value (rv));
 				}
 				else System.out.println("Error: " +ide + " array length does not match its elements");
 			}
@@ -155,7 +185,7 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 					if(CheckST(v,rv))
 					System.out.println("Error: " + ide + " has been declared already");
 					//add to symbol table
-					else symbolTable.put(v, rv);
+					else symbolTable.put(v, new Value (rv));
 				}
 				else System.out.println("Error: " +ide + " array length does not match its elements");
 			}
@@ -179,7 +209,7 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 					if(CheckST(v,rv))
 					System.out.println("Error: " +ide + " has been declared already");
 					//add to symbol table
-					else symbolTable.put(v, rv);
+					else symbolTable.put(v, new Value (rv));
 				}
 				else System.out.println("Error: " + ide + " array length does not match its elements");
 			}
@@ -203,7 +233,7 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 					if(CheckST(v,rv))
 					System.out.println("Error: " + ide + " has been declared already");
 					//add to symbol table
-					else symbolTable.put(v, rv);
+					else symbolTable.put(v, new Value (rv));
 				}
 				else System.out.println("Error: " + ide + " array length does not match its elements");
 			}
@@ -311,39 +341,88 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 		// TODO Auto-generated method stub
 		return super.visitConditionV(ctx);
 	}
+	
+	
+
+	@Override
+	public Value visitReturnLit(DogeScriptParser.ReturnLitContext ctx) {
+		// TODO Auto-generated method stub
+		Value v = new Value (ctx.literal().getText());
+		return v;
+	}
+
+
+	@Override
+	public Value visitReturnVar(DogeScriptParser.ReturnVarContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitReturnVar(ctx);
+	}
+
+	@Override
+	public Value visitReturnFuncCall(DogeScriptParser.ReturnFuncCallContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitReturnFuncCall(ctx);
+	}
+
+
+	@Override
+	public Value visitReturnNull(DogeScriptParser.ReturnNullContext ctx) {
+		// TODO Auto-generated method stub
+		Value v = new Value("null");
+		return v;
+	}
+
+
+	@Override
+	public Value visitReturnExpr(DogeScriptParser.ReturnExprContext ctx) {
+		// TODO Auto-generated method stub
+		Value v = this.visit(ctx.expression());
+		System.out.println("Returned: " + v);
+		
+		return v;
+	}
 
 
 	@Override
 	public Value visitExpression(DogeScriptParser.ExpressionContext ctx) {
 		// TODO Auto-generated method stub
 		System.out.println("expression");
-		return super.visitExpression(ctx);
+		Value v = this.visit(ctx.low_prior());
+		System.out.println("Value: "+v);
+		return v;
 	}
 	
 	@Override
 	public Value visitLpExpr(DogeScriptParser.LpExprContext ctx) {
 		// TODO Auto-generated method stub
-		return super.visitLpExpr(ctx);
+		Value left = this.visit(ctx.high_prior());
+		Value right = this.visit(ctx.low_prior());
+		if(ctx.AddOp() != null)
+			return new Value ((left.asInteger() + right.asInteger()));
+		else if(ctx.SubOp() != null)
+			return new Value ((left.asInteger() - right.asInteger()));
+		return null;
 	}
 
 	@Override
 	public Value visitLow_prior2(DogeScriptParser.Low_prior2Context ctx) {
 		// TODO Auto-generated method stub
-		return new Value (Integer.valueOf(ctx.getText()));
+		Value v = this.visit(ctx.high_prior());
+		return v;
 	}
 	
 	@Override
 	public Value visitHpExpr(DogeScriptParser.HpExprContext ctx) {
 		// TODO Auto-generated method stub
-		Value left = this.visit(ctx.signint(0));
-		Value right = this.visit(ctx.signint(1));
+		Value left = this.visit(ctx.signint());
+		Value right = this.visit(ctx.high_prior());
 		if(ctx.MulOp() != null)
 			return new Value ((left.asInteger()*right.asInteger()));
-		else if (ctx.DivOp() != null)
+		else if(ctx.DivOp() != null)
 			return new Value ((left.asInteger()/right.asInteger()));
-		else if (ctx.ModOp() != null)
+		else if(ctx.ModOp() != null)
 			return new Value ((left.asInteger()%right.asInteger()));
-		else return new Value(0);
+		return null;
 	}
 
 
@@ -377,7 +456,8 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 	@Override
 	public Value visitTpParenthesis(DogeScriptParser.TpParenthesisContext ctx) {
 		// TODO Auto-generated method stub
-		return super.visitTpParenthesis(ctx);
+		Value v = this.visit(ctx.expression());
+		return v;
 	}
 
 
@@ -396,11 +476,7 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 		return super.visitComparison(ctx);
 	}
 
-	@Override
-	public Value visitReturns_value(DogeScriptParser.Returns_valueContext ctx) {
-		// TODO Auto-generated method stub
-		return super.visitReturns_value(ctx);
-	}
+
 
 	@Override
 	public Value visitStart(DogeScriptParser.StartContext ctx) {
@@ -422,10 +498,23 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 
 
 	@Override
-	public Value visitAssignment_statement(DogeScriptParser.Assignment_statementContext ctx) {
+	public Value visitAssignDec(DogeScriptParser.AssignDecContext ctx) {
 		// TODO Auto-generated method stub
-		
-		return super.visitAssignment_statement(ctx);
+		return super.visitAssignDec(ctx);
+	}
+
+
+	@Override
+	public Value visitAssignVar(DogeScriptParser.AssignVarContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitAssignVar(ctx);
+	}
+
+
+	@Override
+	public Value visitAssignInc(DogeScriptParser.AssignIncContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitAssignInc(ctx);
 	}
 
 
@@ -478,6 +567,62 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 		return super.visitLoop_statement(ctx);
 	}
 
+    @Override
+public Value visitPrintExpr(DogeScriptParser.PrintExprContext ctx) {
+    //NOT DONE?
+  System.out.println(ctx.expression().getText());
+  return super.visitPrintExpr(ctx);
+}
+
+
+@Override
+public Value visitPrint_statement(DogeScriptParser.Print_statementContext ctx) {
+  // TODO Auto-generated method stub
+  return super.visitPrint_statement(ctx);
+}
+
+
+@Override
+public Value visitPrintVar(DogeScriptParser.PrintVarContext ctx) {
+  //System.out.println(ctx.VarIdentifier().getText());
+  System.out.println("printing " +  ctx.VarIdentifier().getText() + ":" + getValue(ctx.VarIdentifier().getText()).asString());
+  return super.visitPrintVar(ctx);
+}
+
+
+@Override
+public Value visitPrintLit(DogeScriptParser.PrintLitContext ctx) {
+  System.out.println("in print Lit");
+  
+  if(ctx.literal().StringLit()!=null)
+  {
+    System.out.println(ctx.literal().StringLit().getText().replace("\"", ""));
+  }
+  else if(ctx.literal().IntLit()!=null)
+  {
+    System.out.println(ctx.literal().IntLit().getText());
+  }
+  else if(ctx.literal().FloatLit()!=null)
+  {
+    System.out.println(ctx.literal().FloatLit().getText());
+  }
+  else if(ctx.literal().CharLit() !=null)
+  {
+    System.out.println(ctx.literal().CharLit().getText().replace("'", ""));
+  }
+  else if(ctx.literal().BoolLit() !=null)
+  {
+    System.out.println(ctx.literal().BoolLit().getText());
+  }
+  return null;
+}
+
+
+@Override
+public Value visitPrintFunction(DogeScriptParser.PrintFunctionContext ctx) {
+  // TODO Auto-generated method stub
+  return super.visitPrintFunction(ctx);
+}
 
 	@Override
 	public Value visitSource_code(DogeScriptParser.Source_codeContext ctx) {
@@ -495,6 +640,20 @@ public class Visitor extends DogeScriptBaseVisitor<Value>{
 		return false;
 	}
 	
+	  public Value getValue(String varname){
+		   for (Variable key : symbolTable.keySet()) {
+		       if(key.getIdentifier().equals(varname))
+		         return symbolTable.get(key);
+		   }
+		   return null;
+	}
+	  
+   public void addtoST(Variable v, Object val)
+   {
+	  symbolTable.put(v, new Value(val));
+   }
+   
+   
 	public void PrintST(){
 		
 		System.out.println("Symbol Table: ");

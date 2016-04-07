@@ -16,6 +16,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterConstant_declaration(@NotNull DogeScriptParser.Constant_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitConstant_declaration(@NotNull DogeScriptParser.Constant_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVardec3(@NotNull DogeScriptParser.Vardec3Context ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -35,6 +47,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitConditionB(@NotNull DogeScriptParser.ConditionBContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturnLit(@NotNull DogeScriptParser.ReturnLitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturnLit(@NotNull DogeScriptParser.ReturnLitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -100,6 +124,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterReturns_array_value(@NotNull DogeScriptParser.Returns_array_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturns_array_value(@NotNull DogeScriptParser.Returns_array_valueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterVardec(@NotNull DogeScriptParser.VardecContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -107,6 +143,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVardec(@NotNull DogeScriptParser.VardecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturnVar(@NotNull DogeScriptParser.ReturnVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturnVar(@NotNull DogeScriptParser.ReturnVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -136,6 +184,30 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterScanStatement(@NotNull DogeScriptParser.ScanStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitScanStatement(@NotNull DogeScriptParser.ScanStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssignDec(@NotNull DogeScriptParser.AssignDecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignDec(@NotNull DogeScriptParser.AssignDecContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterReturn_statement(@NotNull DogeScriptParser.Return_statementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -143,6 +215,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitReturn_statement(@NotNull DogeScriptParser.Return_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrintExpr(@NotNull DogeScriptParser.PrintExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintExpr(@NotNull DogeScriptParser.PrintExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -268,6 +352,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAssignVar(@NotNull DogeScriptParser.AssignVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignVar(@NotNull DogeScriptParser.AssignVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMain_function(@NotNull DogeScriptParser.Main_functionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -299,6 +395,30 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCodeblock(@NotNull DogeScriptParser.CodeblockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterReturnFuncCall(@NotNull DogeScriptParser.ReturnFuncCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturnFuncCall(@NotNull DogeScriptParser.ReturnFuncCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrintVar(@NotNull DogeScriptParser.PrintVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintVar(@NotNull DogeScriptParser.PrintVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -352,6 +472,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrintLit(@NotNull DogeScriptParser.PrintLitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintLit(@NotNull DogeScriptParser.PrintLitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterComparison_bool_lit(@NotNull DogeScriptParser.Comparison_bool_litContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -359,6 +491,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitComparison_bool_lit(@NotNull DogeScriptParser.Comparison_bool_litContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrintFunction(@NotNull DogeScriptParser.PrintFunctionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintFunction(@NotNull DogeScriptParser.PrintFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -395,18 +539,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCount_loop_statement(@NotNull DogeScriptParser.Count_loop_statementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAll_possible_print(@NotNull DogeScriptParser.All_possible_printContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAll_possible_print(@NotNull DogeScriptParser.All_possible_printContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -472,6 +604,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAssignInc(@NotNull DogeScriptParser.AssignIncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignInc(@NotNull DogeScriptParser.AssignIncContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpression(@NotNull DogeScriptParser.ExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -484,13 +628,13 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturns_value(@NotNull DogeScriptParser.Returns_valueContext ctx) { }
+	@Override public void enterReturnNull(@NotNull DogeScriptParser.ReturnNullContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturns_value(@NotNull DogeScriptParser.Returns_valueContext ctx) { }
+	@Override public void exitReturnNull(@NotNull DogeScriptParser.ReturnNullContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -520,6 +664,18 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterReturnExpr(@NotNull DogeScriptParser.ReturnExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturnExpr(@NotNull DogeScriptParser.ReturnExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction_declaration_paramaters(@NotNull DogeScriptParser.Function_declaration_paramatersContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -527,18 +683,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunction_declaration_paramaters(@NotNull DogeScriptParser.Function_declaration_paramatersContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAssignment_statement(@NotNull DogeScriptParser.Assignment_statementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAssignment_statement(@NotNull DogeScriptParser.Assignment_statementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -563,18 +707,6 @@ public class DogeScriptBaseListener implements DogeScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEnd_condition(@NotNull DogeScriptParser.End_conditionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterScan_statement(@NotNull DogeScriptParser.Scan_statementContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitScan_statement(@NotNull DogeScriptParser.Scan_statementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

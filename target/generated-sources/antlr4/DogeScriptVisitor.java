@@ -11,6 +11,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link DogeScriptParser#constant_declaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConstant_declaration(@NotNull DogeScriptParser.Constant_declarationContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code vardec3}
 	 * labeled alternative in {@link DogeScriptParser#variable_declaration}.
 	 * @param ctx the parse tree
@@ -23,6 +29,13 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitConditionB(@NotNull DogeScriptParser.ConditionBContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code returnLit}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnLit(@NotNull DogeScriptParser.ReturnLitContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#function_call}.
 	 * @param ctx the parse tree
@@ -56,12 +69,25 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionF(@NotNull DogeScriptParser.ConditionFContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link DogeScriptParser#returns_array_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturns_array_value(@NotNull DogeScriptParser.Returns_array_valueContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code vardec}
 	 * labeled alternative in {@link DogeScriptParser#variable_declaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitVardec(@NotNull DogeScriptParser.VardecContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code returnVar}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnVar(@NotNull DogeScriptParser.ReturnVarContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#logical_operator}.
 	 * @param ctx the parse tree
@@ -76,11 +102,32 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNegSignInt(@NotNull DogeScriptParser.NegSignIntContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code scanStatement}
+	 * labeled alternative in {@link DogeScriptParser#scan_statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScanStatement(@NotNull DogeScriptParser.ScanStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code assignDec}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignDec(@NotNull DogeScriptParser.AssignDecContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#return_statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitReturn_statement(@NotNull DogeScriptParser.Return_statementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code printExpr}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintExpr(@NotNull DogeScriptParser.PrintExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#conditionV}.
 	 * @param ctx the parse tree
@@ -143,6 +190,13 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAfterthought_statement(@NotNull DogeScriptParser.Afterthought_statementContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code assignVar}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignVar(@NotNull DogeScriptParser.AssignVarContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#main_function}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -160,6 +214,20 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCodeblock(@NotNull DogeScriptParser.CodeblockContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code returnFuncCall}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnFuncCall(@NotNull DogeScriptParser.ReturnFuncCallContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code printVar}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintVar(@NotNull DogeScriptParser.PrintVarContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code tpParenthesis}
 	 * labeled alternative in {@link DogeScriptParser#top_prior}.
@@ -186,11 +254,25 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLiteral(@NotNull DogeScriptParser.LiteralContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code printLit}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintLit(@NotNull DogeScriptParser.PrintLitContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#comparison_bool_lit}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitComparison_bool_lit(@NotNull DogeScriptParser.Comparison_bool_litContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code printFunction}
+	 * labeled alternative in {@link DogeScriptParser#all_possible_print}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintFunction(@NotNull DogeScriptParser.PrintFunctionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#function_call_parameters}.
 	 * @param ctx the parse tree
@@ -209,12 +291,6 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCount_loop_statement(@NotNull DogeScriptParser.Count_loop_statementContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link DogeScriptParser#all_possible_print}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAll_possible_print(@NotNull DogeScriptParser.All_possible_printContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#repeatuntil_loop_statement}.
 	 * @param ctx the parse tree
@@ -249,17 +325,25 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunction_declaration(@NotNull DogeScriptParser.Function_declarationContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code assignInc}
+	 * labeled alternative in {@link DogeScriptParser#assignment_statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignInc(@NotNull DogeScriptParser.AssignIncContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpression(@NotNull DogeScriptParser.ExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link DogeScriptParser#returns_value}.
+	 * Visit a parse tree produced by the {@code returnNull}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturns_value(@NotNull DogeScriptParser.Returns_valueContext ctx);
+	T visitReturnNull(@NotNull DogeScriptParser.ReturnNullContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#start}.
 	 * @param ctx the parse tree
@@ -273,17 +357,18 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAll_possible_statements(@NotNull DogeScriptParser.All_possible_statementsContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code returnExpr}
+	 * labeled alternative in {@link DogeScriptParser#returns_value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnExpr(@NotNull DogeScriptParser.ReturnExprContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link DogeScriptParser#function_declaration_paramaters}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunction_declaration_paramaters(@NotNull DogeScriptParser.Function_declaration_paramatersContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link DogeScriptParser#assignment_statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAssignment_statement(@NotNull DogeScriptParser.Assignment_statementContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code tpVarIdentifier}
 	 * labeled alternative in {@link DogeScriptParser#top_prior}.
@@ -297,12 +382,6 @@ public interface DogeScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitEnd_condition(@NotNull DogeScriptParser.End_conditionContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link DogeScriptParser#scan_statement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitScan_statement(@NotNull DogeScriptParser.Scan_statementContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code high_prior2}
 	 * labeled alternative in {@link DogeScriptParser#high_prior}.

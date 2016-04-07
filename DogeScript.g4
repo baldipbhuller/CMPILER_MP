@@ -26,6 +26,7 @@ all_possible_statements : {System.out.println("in all_possible");}
 			   variable_declaration Terminator  
              | assignment_statement Terminator
              | function_call Terminator
+             | constant_declaration Terminator
              | conditional_statement 
              | loop_statement
              | print_statement Terminator
@@ -64,13 +65,13 @@ return_statement : ReturnKeyword returns_value Terminator;
 
 print_statement : PrintStarter all_possible_print ;
 
-all_possible_print : literal
-				   | VarIdentifier
-				   | function_call
-				   | expression
-				   ;
+all_possible_print : literal #printLit
+           | VarIdentifier #printVar
+           | function_call #printFunction
+           | expression #printExpr
+           ; 
 				   
-scan_statement : ScanStarter datatype VarIdentifier;
+scan_statement : ScanStarter datatype VarIdentifier #scanStatement;
   
 // TODO: a function with a void return type
   
@@ -78,11 +79,11 @@ scan_statement : ScanStarter datatype VarIdentifier;
 variable_declaration : {System.out.println("in variable_declaration");}
 					   VarDecStarter datatype variable_instance 				# vardec
                      | VarDecStarter datatype VarIdentifier AssOp returns_value	# vardec2
-                     | VarDecStarter datatype_array VarIdentifier AssOp returns_value #vardec3
+                     | VarDecStarter datatype_array VarIdentifier AssOp returns_array_value #vardec3
                      ;
  
-//CONSTANT_DECLARATION : ConDecStarter ConstantVarIdentifier AssignOp literal
-//                     ;
+constant_declaration : ConDecStarter datatype VarIdentifier AssOp literal;
+
   
 // TODO: literal
 literal : {System.out.println("in literal");}
@@ -118,14 +119,16 @@ variable_instance : {System.out.println("in variable_instance");}
 
 // TODO: returns_value  
 returns_value : {System.out.println("in returns_value");}
-				literal
-			  | OpenBrace literal array_literal CloseBrace	
-			  | VarIdentifier
-              | expression
-              | function_call
-              | NullKeyword
+				literal #returnLit	 
+			  | VarIdentifier #returnVar
+              | expression #returnExpr
+              | function_call #returnFuncCall
+              | NullKeyword #returnNull
               ;
   
+returns_array_value : OpenBrace literal array_literal CloseBrace
+					;    
+
 // TODO: expression
 expression : //return result
     low_prior
@@ -133,12 +136,12 @@ expression : //return result
     ;
 
 low_prior :
-    high_prior op= (AddOp | SubOp) 	high_prior	#lpExpr
+    high_prior  (AddOp | SubOp) low_prior	#lpExpr
    	| high_prior  		#low_prior2
     ;
 
 high_prior :
-    signint (MulOp | DivOp | ModOp) signint #hpExpr
+    signint (MulOp | DivOp | ModOp) high_prior #hpExpr
     | signint #high_prior2
     ;
     
@@ -160,10 +163,9 @@ top_prior:
   
   
 assignment_statement : {System.out.println("in assignment_statement");}  
-                     | VarIdentifier AssOp returns_value 
-//                     | VarIdentifier IncrementOp Terminator
-					 | VarIdentifier IncrementOp // this is actually the correct one, but wrong for non-for loops
-                     | VarIdentifier DecrementOp 
+                      VarIdentifier AssOp returns_value #assignVar
+					 | VarIdentifier IncrementOp #assignInc // this is actually the correct one, but wrong for non-for loops
+                     | VarIdentifier DecrementOp #assignDec
                      ;
 
 conditional_statement : {System.out.println("in conditional_statement");}
@@ -295,6 +297,7 @@ CharDataType : 'char' ;
 BoolDataType : 'boolean' ;
 StringDataType : 'string' ;
 
+ConDecStarter: 'constant';
 
 // Delimiters so fancy
 Terminator : {System.out.println("in terminator");} 
